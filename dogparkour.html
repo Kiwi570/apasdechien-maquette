@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="fr-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DogParkour · À pas de chien</title>
+<script>try{if(sessionStorage.getItem('apdc-rideau')==='1'&&localStorage.getItem('apdc-calme')!=='1'&&sessionStorage.getItem('apdc-sans-rideau')!=='1')document.documentElement.classList.add('rideau-entree');}catch(e){}setTimeout(function(){document.documentElement.classList.remove('rideau-entree');},4000);</script>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="DogParkour à Lausanne et environs : grimper, sauter, slalomer, s&#x27;équilibrer, en forêt ou en ville.">
+<meta name="theme-color" content="#1C3A2C">
+<meta property="og:title" content="DogParkour · À pas de chien">
+<meta property="og:description" content="DogParkour à Lausanne et environs : grimper, sauter, slalomer, s&#x27;équilibrer, en forêt ou en ville.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_CH">
+<link rel="icon" type="image/png" href="/assets/img/logo/favicon-64.png">
+<link rel="apple-touch-icon" href="/assets/img/logo/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/fraunces.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-patte" viewBox="0 0 24 24"><ellipse cx="12" cy="16.2" rx="5.3" ry="4.5"/><ellipse cx="5.1" cy="10.2" rx="2.2" ry="2.9" transform="rotate(-20 5.1 10.2)"/><ellipse cx="9.5" cy="5.6" rx="2.3" ry="3.1" transform="rotate(-6 9.5 5.6)"/><ellipse cx="14.5" cy="5.6" rx="2.3" ry="3.1" transform="rotate(6 14.5 5.6)"/><ellipse cx="18.9" cy="10.2" rx="2.2" ry="2.9" transform="rotate(20 18.9 10.2)"/></symbol>
+<symbol id="i-balle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#F2BF1A"/><path d="M4.2 6.5c3.8 2.6 3.8 8.4 0 11M19.8 6.5c-3.8 2.6-3.8 8.4 0 11" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></symbol>
+<symbol id="i-fleche" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-velo" viewBox="0 0 120 80"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="60" r="16"/><circle cx="96" cy="60" r="16"/><path d="M24 60 50 34h30L96 60M50 34l12 26 18-26M62 60H24M46 26h10"/><path d="M80 34l-4-10h8" /><path d="M66 18 56 36l8 12" stroke-width="7"/><path d="M66 22l14 10"/></g><circle cx="69" cy="9" r="6" fill="currentColor"/></symbol>
+<symbol id="i-joggeur" viewBox="0 0 60 80"><g fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"><path d="M32 17 25 41"/><path d="M31 23l10 9 6-6M31 23l-11 8"/><path d="M25 41l13 15-4 17M25 41l-8 17-10 3"/></g><circle cx="35" cy="8" r="6.5" fill="currentColor"/></symbol>
+<symbol id="i-cheval" viewBox="0 0 130 90"><g fill="currentColor"><ellipse cx="60" cy="46" rx="33" ry="14"/><path d="M84 38 99 15l11 3-1 8-9 2-6 20z"/><path d="M28 44c-10 0-16 8-18 20 6-6 10-10 18-12z"/></g><g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"><path d="M36 56l-4 30M46 58l2 28M76 56l-4 30M86 52l6 34"/><path d="M58 33V18M58 22l10 8"/></g><circle cx="58" cy="10" r="5.5" fill="currentColor"/></symbol>
+<symbol id="i-chien" viewBox="0 0 90 60"><path fill="currentColor" d="M14 30c-6-2-10-8-9-14 4 6 8 8 12 8l42-2 8-12 6-6 4 3 8 2 2 5-6 4-4 0-4 10-2 4 2 22h-6l-2-16-30 2-4 14h-6l-2-16c-4-2-6-4-9-8z"/></symbol>
+<symbol id="i-chien-assis" viewBox="0 0 60 70"><path fill="currentColor" d="M18 68V46c-3-8-2-16 4-22V12c0-6 4-10 10-10h4l6-2 2 6c3 2 4 6 2 9l-6 3-2 1c4 8 6 18 5 27l3 22h-8l-2-16h-8l-2 16zM18 52c-6 2-12 0-14-6 5 2 9 1 14-2z"/></symbol>
+<symbol id="i-foret" viewBox="0 0 24 24"><path d="M7 3 2 13h4l-3 5h8l-3-5h4zM17 6l-4 7h3l-3 5h8l-3-5h3zM7 18v3M17 18v3"/></symbol>
+<symbol id="i-lac" viewBox="0 0 24 24"><path d="M2 15c3-2 5-2 7 0s4 2 6 0 5-2 7 0M2 19c3-2 5-2 7 0s4 2 6 0 5-2 7 0M5 11l5-7 4 5 2-2 4 4"/></symbol>
+<symbol id="i-campagne" viewBox="0 0 24 24"><path d="M2 20h20M4 20v-6h6v6M3 14l4-4 4 4M14 20c0-4 3-7 6-7M15 11a2.5 2.5 0 1 0 5 0 2.5 2.5 0 1 0-5 0"/></symbol>
+<symbol id="i-ville" viewBox="0 0 24 24"><path d="M3 21V9l5-3v15M8 21V4l6 3v14M14 21v-9h7v9M2 21h20M11 9h1M11 12h1M11 15h1M17 15h1"/></symbol>
+<symbol id="i-copier" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+</defs></svg>
+<div class="site" data-page="dogparkour" data-liens="propres">
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="header on-dark" data-header>
+  <div class="wrap">
+    <a class="marque" href="/" aria-label="À pas de chien, accueil">
+      <img src="/assets/img/logo/medaillon-320.webp" width="44" height="44" alt="">
+      <span class="marque-txt"><span class="marque-nom">À pas de chien</span><span class="marque-sous">Éducation &amp; balade</span></span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale"><ul><li><a href="/education-canine">Éducation canine</a></li><li><a href="/balade-educative">Balade éducative</a></li><li><a href="/dogparkour" aria-current=page>DogParkour</a></li><li><a href="/balade">Balade</a></li><li><a href="/contact">Contact</a></li></ul></nav>
+    <div class="outils">
+      <button class="outil" type="button" data-son aria-pressed="false" title="Ambiance sonore de balade"><span class="barres" aria-hidden="true"><i></i><i></i><i></i></span><span class="lbl">Écouter la balade</span><span class="sr-only">Ambiance sonore</span></button>
+      <button class="outil" type="button" data-calme aria-pressed="false" title="Réduire les animations"><span aria-hidden="true">≈</span><span class="lbl">Mode calme</span><span class="sr-only">Mode calme</span></button>
+      <span class="magnet cta-header"><a class="btn btn--jaune" href="/contact#demande"><span>Réserver le bilan</span><svg class="patte" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-patte"></use></svg></a></span>
+      <button class="burger" type="button" data-burger aria-expanded="false" aria-controls="menu"><span></span><span class="sr-only">Menu</span></button>
+    </div>
+  </div>
+</header>
+<div class="menu" id="menu" data-menu>
+  <ul><li><a class="grand" href="/education-canine"><small>01</small>Éducation canine</a></li><li><a class="grand" href="/balade-educative"><small>02</small>Balade éducative</a></li><li><a class="grand" href="/dogparkour"><small>03</small>DogParkour</a></li><li><a class="grand" href="/balade"><small>04</small>Balade</a></li><li><a class="grand" href="/contact"><small>05</small>Contact</a></li></ul>
+  <div class="menu-pied"><span class="eyebrow">Anne Kunz · Lausanne et environs</span><span>078 618 81 13</span><span>apasdechien@gmail.com</span></div>
+</div>
+<main id="contenu">
+<section class="hero" data-hero data-ambiance="foret">
+  <div class="hero-fond" data-parallax="0.25"><img src="/assets/img/grok/dogparkour-ouverture-1168.webp" srcset="/assets/img/grok/dogparkour-ouverture-640.webp 640w, /assets/img/grok/dogparkour-ouverture-1168.webp 1168w" sizes="100vw" width="1168" height="784" alt="Clairière avec des troncs moussus et des souches" loading="eager" decoding="async" fetchpriority="high"></div>
+  
+  <div class="hero-voile" aria-hidden="true"></div>
+  <canvas class="sousbois" data-sousbois aria-hidden="true"></canvas><div class="sousbois-css" aria-hidden="true"></div>
+  
+  <div class="wrap hero-contenu">
+    <div>
+      <span class="eyebrow" data-hero-item>DogParkour · Lausanne et environs</span>
+      <h1 data-hero-titre>Dog<em>Parkour</em></h1>
+      <p class="lead" data-hero-item>Découvrez une autre façon de vous promener, tout en faisant travailler votre chien.</p>
+      <div class="btn-row" data-hero-item><span class="magnet"><a class="btn btn--jaune" href="/contact#demande"><span>Réserver un cours</span><svg class="patte" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-patte"></use></svg></a></span><span class="magnet"><a class="btn btn--ligne" href="#figures"><span>Voir les figures</span><svg class="patte" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-fleche"></use></svg></a></span></div>
+      <div class="hero-bas" data-hero-item><span class="pastille-live" data-prochain-pastille><span class="point" aria-hidden="true"></span><span data-prochain-court>Prochain cours : mardi 18 h, classe chiot</span></span></div>
+    </div>
+    <figure class="carnet" data-carnet data-hero-item><img src="/assets/img/photos/parkour-pile-bois-1280.webp" srcset="/assets/img/photos/parkour-pile-bois-640.webp 640w, /assets/img/photos/parkour-pile-bois-1280.webp 1280w, /assets/img/photos/parkour-pile-bois-2000.webp 2000w" sizes="(min-width: 1000px) 30vw, 70vw" width="4000" height="3000" alt="Trois chiens grimpés sur une pile de troncs en forêt" loading="eager" decoding="async" fetchpriority="high"><figcaption>Tout en haut de la pile de bois</figcaption></figure>
+  </div>
+</section>
+<section class="section" id="autrement" data-ambiance="foret">
+  <div class="wrap stack">
+    <span class="eyebrow">Le principe</span>
+    <p class="display" data-obstacles style="font-size:clamp(3rem,9vw,8.4rem);position:relative">
+      <span class="obstacle">Se</span> <span class="obstacle">balader</span> <em class="obstacle">autrement</em>
+      <svg class="saut" data-saut aria-hidden="true" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none"><path data-saut-trace fill="none" stroke="#C27526" stroke-width="2" stroke-dasharray="3 8"/><use href="#i-balle" width="34" height="34" data-saut-balle/></svg>
+    </p>
+    <div class="cols mt-m">
+      <p class="lead">C'est un mélange de parkour humain et d'agilité canine. On utilise ce que l'on rencontre en balade pour faire des exercices avec son chien.</p>
+      <p>Les balades deviennent plus amusantes, et la relation entre le maître et son chien se renforce.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section band--foret horizontal" id="figures" data-horizontal data-ambiance="foret">
+  <div class="wrap horizontal-tete">
+    <div class="head-section"><span class="eyebrow">Les figures</span><h2 data-split>Grimper, sauter, <em>slalomer</em></h2><p class="lead">Les chiens apprennent à grimper, sauter, slalomer entre les arbres, s'équilibrer et courir sur des obstacles comme des troncs ou des souches.</p></div>
+    <div class="progression" aria-hidden="true"><i data-progression></i></div>
+  </div>
+  <div class="horizontal-piste" data-piste><article class="tuile"><div class="visuel"><img src="/assets/img/photos/parkour-pile-bois-1280.webp" srcset="/assets/img/photos/parkour-pile-bois-640.webp 640w, /assets/img/photos/parkour-pile-bois-1280.webp 1280w, /assets/img/photos/parkour-pile-bois-2000.webp 2000w" sizes="(min-width: 720px) 440px, 82vw" width="4000" height="3000" alt="Chiens grimpés sur une pile de bois" loading="lazy" decoding="async"><svg class="trajet" viewBox="0 0 360 450" preserveAspectRatio="none" aria-hidden="true"><path d="M40 400 L110 330 L90 260 L170 200 L150 130 L230 70" data-trajet/></svg><div class="incrust"><img src="/assets/img/grok/figure-grimper-784.webp" srcset="/assets/img/grok/figure-grimper-640.webp 640w, /assets/img/grok/figure-grimper-784.webp 784w" sizes="200px" width="784" height="1168" alt="Rocher moussu et souche" loading="lazy" decoding="async"></div><span class="etiquette panneau-mini">Grimper</span></div><h3>Grimper</h3><p>Sur une pile de bois, un rocher, une souche.</p></article><article class="tuile"><div class="visuel"><img src="/assets/img/grok/figure-sauter-784.webp" srcset="/assets/img/grok/figure-sauter-640.webp 640w, /assets/img/grok/figure-sauter-784.webp 784w" sizes="(min-width: 720px) 440px, 82vw" width="784" height="1168" alt="Tronc couché en travers d&#x27;un sentier" loading="lazy" decoding="async"><svg class="trajet" viewBox="0 0 360 450" preserveAspectRatio="none" aria-hidden="true"><path d="M30 380 C 110 160, 250 160, 320 380" data-trajet/></svg><div class="incrust"><img src="/assets/img/photos/parkour-souches-1280.webp" srcset="/assets/img/photos/parkour-souches-640.webp 640w, /assets/img/photos/parkour-souches-1280.webp 1280w, /assets/img/photos/parkour-souches-2000.webp 2000w" sizes="200px" width="4000" height="3000" alt="Berger australien sur des souches" loading="lazy" decoding="async"></div><span class="etiquette panneau-mini">Sauter</span></div><h3>Sauter</h3><p>Par-dessus un tronc couché en travers du chemin.</p></article><article class="tuile"><div class="visuel"><img src="/assets/img/grok/figure-slalomer-784.webp" srcset="/assets/img/grok/figure-slalomer-640.webp 640w, /assets/img/grok/figure-slalomer-784.webp 784w" sizes="(min-width: 720px) 440px, 82vw" width="784" height="1168" alt="Rangée de jeunes troncs de hêtres" loading="lazy" decoding="async"><svg class="trajet" viewBox="0 0 360 450" preserveAspectRatio="none" aria-hidden="true"><path d="M60 420 C 160 380, 160 330, 80 290 S 120 200, 220 170 S 260 90, 160 50" data-trajet/></svg><span class="etiquette panneau-mini">Slalomer</span></div><h3>Slalomer</h3><p>Entre les arbres, au rythme de son humain.</p></article><article class="tuile"><div class="visuel"><img src="/assets/img/photos/parkour-poutre-1280.webp" srcset="/assets/img/photos/parkour-poutre-640.webp 640w, /assets/img/photos/parkour-poutre-1280.webp 1280w, /assets/img/photos/parkour-poutre-2000.webp 2000w" sizes="(min-width: 720px) 440px, 82vw" width="4000" height="3000" alt="Berger australien sur une poutre de la piste Vita" loading="lazy" decoding="async"><svg class="trajet" viewBox="0 0 360 450" preserveAspectRatio="none" aria-hidden="true"><path d="M40 260 L100 250 L160 268 L220 248 L290 262 L340 252" data-trajet/></svg><div class="incrust"><img src="/assets/img/grok/figure-equilibre-784.webp" srcset="/assets/img/grok/figure-equilibre-640.webp 640w, /assets/img/grok/figure-equilibre-784.webp 784w" sizes="200px" width="784" height="1168" alt="Long tronc posé au sol" loading="lazy" decoding="async"></div><span class="etiquette panneau-mini">S'équilibrer</span></div><h3>S'équilibrer</h3><p>Sur une poutre ou un tronc étroit.</p></article><article class="tuile"><div class="visuel"><img src="/assets/img/photos/parkour-tronc-ruisseau-1280.webp" srcset="/assets/img/photos/parkour-tronc-ruisseau-640.webp 640w, /assets/img/photos/parkour-tronc-ruisseau-1280.webp 1280w, /assets/img/photos/parkour-tronc-ruisseau-2000.webp 2000w" sizes="(min-width: 720px) 440px, 82vw" width="4000" height="3000" alt="Bearded collie sur un tronc au-dessus d&#x27;un ruisseau" loading="lazy" decoding="async"><svg class="trajet" viewBox="0 0 360 450" preserveAspectRatio="none" aria-hidden="true"><path d="M20 300 Q 60 220 100 300 T 180 300 T 260 300 T 340 300" data-trajet/></svg><span class="etiquette panneau-mini">Courir sur les obstacles</span></div><h3>Courir sur les obstacles</h3><p>Troncs et souches, adaptés à chaque chien.</p></article></div>
+</section>
+
+<section class="section" id="pour-qui" data-ambiance="campagne">
+  <div class="wrap">
+    <div class="head-section"><span class="eyebrow">Pour qui</span><h2 data-split>Tous les chiens <em>peuvent en faire</em></h2></div>
+    <div class="faits">
+      <div class="fait" data-reveal><h3>Tous les chiens</h3><p>Les exercices sont adaptés à l'âge, à la taille et à la condition physique de chaque chien.</p></div>
+      <div class="fait" data-reveal><h3>Les chiens anxieux ou réactifs</h3><p>Concentrés sur ce que leur demande leur maître plutôt que sur l'environnement, ils s'amusent et apprennent. Une activité qui peut les aider à être plus calmes à l'extérieur.</p></div>
+      <div class="fait" data-reveal><h3>Les chiens de chasse</h3><p>Le DogParkour les aide à se concentrer sur leur maître plutôt que sur les odeurs.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section band--papier" id="decors" data-ambiance="ville">
+  <div class="wrap cols cols--75">
+    <div class="decors" data-decors style="--pos:50%">
+      <img src="/assets/img/photos/parkour-tronc-ruisseau-1280.webp" srcset="/assets/img/photos/parkour-tronc-ruisseau-640.webp 640w, /assets/img/photos/parkour-tronc-ruisseau-1280.webp 1280w, /assets/img/photos/parkour-tronc-ruisseau-2000.webp 2000w" sizes="(min-width: 900px) 55vw, 92vw" width="4000" height="3000" alt="En forêt : bearded collie sur un tronc au-dessus d&#x27;un ruisseau" loading="lazy" decoding="async">
+      <img class="apres" src="/assets/img/grok/terrain-ville-784.webp" srcset="/assets/img/grok/terrain-ville-640.webp 640w, /assets/img/grok/terrain-ville-784.webp 784w" sizes="(min-width: 900px) 55vw, 92vw" width="784" height="1168" alt="En ville : promenade pavée bordée de platanes, image d&#x27;ambiance" loading="lazy" decoding="async">
+      <span class="tag g">Forêt</span><span class="tag d">Ville</span>
+      <div class="poignee"><button type="button" data-poignee aria-label="Glisser pour comparer forêt et ville" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">↔</button></div>
+    </div>
+    <div class="stack">
+      <span class="eyebrow">Les terrains</span>
+      <h2 data-split>En forêt <em>ou en ville</em></h2>
+      <p class="lead">Les cours ont lieu en forêt, ou en ville en utilisant le mobilier urbain.</p>
+      <p class="note">La vue de ville est une image d'ambiance, pas un lieu de cours.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tarifs" data-ambiance="foret">
+  <div class="wrap cols">
+    <div class="stack">
+      <div class="head-section"><span class="eyebrow">Tarifs et horaire</span><h2 data-split>Un cours, <em>un abonnement</em></h2></div>
+      <div class="panneaux" data-panneaux>
+        <div class="panneau "><span class="poteau"></span><div class="plaque"><span class="dest">Cours en groupe</span><span></span><span class="prix">CHF 30.–</span></div></div>
+        <div class="panneau "><span class="poteau"></span><div class="plaque"><span class="dest">Abonnement 8 cours</span><span class="duree">3 mois</span><span class="detail">Valable 3 mois</span><span class="prix">CHF 200.–</span></div></div>
+        <div class="panneau panneau--rouge"><span class="poteau"></span><div class="plaque"><span class="dest">Horaire</span><span></span><span class="detail">Sur demande</span></div></div>
+      </div>
+    </div>
+    <figure class="flair" data-flair><img class="f-base" src="/assets/img/photos/aussie-fontaine-1280.webp" srcset="/assets/img/photos/aussie-fontaine-640.webp 640w, /assets/img/photos/aussie-fontaine-1280.webp 1280w, /assets/img/photos/aussie-fontaine-2000.webp 2000w" sizes="(min-width: 900px) 45vw, 92vw" width="4000" height="3000" alt="Berger australien qui boit à une fontaine en pierre" loading="lazy" decoding="async"><img class="f-couleur" src="/assets/img/photos/aussie-fontaine-1280.webp" srcset="/assets/img/photos/aussie-fontaine-640.webp 640w, /assets/img/photos/aussie-fontaine-1280.webp 1280w, /assets/img/photos/aussie-fontaine-2000.webp 2000w" sizes="(min-width: 900px) 45vw, 92vw" width="4000" height="3000" alt="" loading="lazy" decoding="async" aria-hidden="true"><figcaption>Berger australien qui boit à une fontaine en pierre</figcaption></figure>
+  </div>
+</section>
+
+<section class="appel section" id="bilan" data-ambiance="campagne">
+  <div class="fond" data-parallax="0.18"><img src="/assets/img/photos/parkour-souches-1280.webp" srcset="/assets/img/photos/parkour-souches-640.webp 640w, /assets/img/photos/parkour-souches-1280.webp 1280w, /assets/img/photos/parkour-souches-2000.webp 2000w" sizes="100vw" width="4000" height="3000" alt="Berger australien au sommet de souches en forêt" loading="lazy" decoding="async"></div>
+  <div class="wrap stack">
+    <span class="eyebrow" style="justify-self:center">Première étape</span>
+    <h2 data-split>Et si la balade <em>devenait un jeu</em> ?</h2>
+    <p class="lead">Le DogParkour se pratique en groupe, sur demande. Écrivez à Anne pour connaître les prochaines dates.</p>
+    <div class="btn-row"><span class="magnet"><a class="btn btn--jaune" href="/contact#demande"><span>Écrire à Anne</span><svg class="patte" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-patte"></use></svg></a></span></div>
+    <span class="tel-grand">078 618 81 13</span>
+  </div>
+</section>
+</main>
+<footer class="pied" data-ambiance="foret">
+  <div class="wrap">
+    <p class="pied-grand">Pour un chien <em>bien dans ses pattes</em>.</p>
+    <div class="pied-grille">
+      <div class="stack">
+        <a class="marque" href="/"><img src="/assets/img/logo/medaillon-320.webp" width="56" height="56" alt=""><span class="marque-txt"><span class="marque-nom">À pas de chien</span><span class="marque-sous">Éducation &amp; balade</span></span></a>
+        <p>Anne Kunz, éducatrice canine Profil 1+.<br>Lausanne et environs.</p>
+        <div class="coordonnees">
+  <div class="coord"><span class="sr-only">Téléphone :</span><a class="val lien" href="tel:+41786188113">078 618 81 13</a><button class="copier" type="button" data-copier="078 618 81 13" aria-label="Copier le numéro"><svg class="patte" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copier"></use></svg><span>Copier</span></button></div>
+  <div class="coord"><span class="sr-only">E-mail :</span><a class="val lien" href="mailto:apasdechien@gmail.com">apasdechien@gmail.com</a><button class="copier" type="button" data-copier="apasdechien@gmail.com" aria-label="Copier l&#x27;adresse e-mail"><svg class="patte" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copier"></use></svg><span>Copier</span></button></div>
+</div>
+      </div>
+      <div><h3>Services</h3><ul><li><a href="/education-canine">Éducation canine</a></li><li><a href="/balade-educative">Balade éducative</a></li><li><a href="/dogparkour">DogParkour</a></li><li><a href="/balade">Balade</a></li></ul></div>
+      <div><h3>Infos</h3><ul><li><a href="/contact#demande">Réserver le bilan</a></li><li><a href="/contact#questions">Questions fréquentes</a></li><li><a href="/mentions-legales">Mentions légales</a></li><li><a href="/confidentialite">Confidentialité</a></li></ul></div>
+    </div>
+    <div class="pied-bas"><span>© <span data-annee>2026</span> À pas de chien</span><span>Maquette de travail : contenus et images à valider avec Anne Kunz.</span></div>
+  </div>
+</footer>
+<nav class="barre-mobile" data-barre-mobile aria-label="Actions rapides">
+  <a class="btn btn--ligne" href="tel:+41786188113"><span>Appeler</span></a>
+  <a class="btn btn--jaune" href="/contact#demande"><span>Réserver le bilan</span></a>
+</nav>
+<div class="curseur" data-curseur aria-hidden="true"><span class="balle"></span><span class="etiquette-c" data-curseur-txt>Renifler</span></div>
+<div class="rideau" data-rideau aria-hidden="true"><div class="pas" data-rideau-pas></div></div>
+<div class="grain" aria-hidden="true"></div>
+</div>
+<script src="/assets/vendor/gsap.min.js" defer></script><script src="/assets/vendor/ScrollTrigger.min.js" defer></script><script src="/assets/vendor/SplitText.min.js" defer></script><script src="/assets/vendor/MotionPathPlugin.min.js" defer></script><script src="/assets/vendor/lenis.min.js" defer></script><script src="/assets/vendor/ogl.min.js" defer></script><script src="/assets/js/data.js" defer></script><script src="/assets/js/ambiance.js" defer></script><script src="/assets/js/app.js" defer></script><script src="/assets/js/sousbois.js" defer></script><script src="/assets/js/pages.js" defer></script>
+</body>
+</html>
