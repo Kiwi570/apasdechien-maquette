@@ -208,7 +208,8 @@ p { margin: 0; max-width: 64ch; }
 .hero { position: relative; min-height: min(100svh, 980px); display: grid; align-items: end; overflow: hidden; color: var(--papier); background: var(--nuit); isolation: isolate; }
 .hero--court { min-height: min(88svh, 860px); }
 .hero-fond { position: absolute; inset: -8% 0 0; z-index: -3; }
-.hero-fond img { width: 100%; height: 100%; object-fit: cover; }
+.hero-fond img { width: 100%; height: 100%; object-fit: cover; object-position: var(--pos-hero, 50% 50%); }
+@media (max-width: 719px) { .hero-fond img { object-position: var(--pos-hero-m, var(--pos-hero, 50% 50%)); } }
 .hero-voile { position: absolute; inset: 0; z-index: -2; background: linear-gradient(180deg, rgba(16,35,26,.55) 0%, rgba(16,35,26,.12) 32%, rgba(16,35,26,.35) 62%, rgba(16,35,26,.88) 100%); }
 @media (min-width: 1000px) { .hero-voile { background: linear-gradient(90deg, rgba(16,35,26,.74) 0%, rgba(16,35,26,.42) 38%, rgba(16,35,26,0) 66%), linear-gradient(180deg, rgba(16,35,26,.55) 0%, rgba(16,35,26,.1) 30%, rgba(16,35,26,.25) 62%, rgba(16,35,26,.86) 100%); } }
 @media (max-width: 999px) { .hero-voile { background: linear-gradient(180deg, rgba(16,35,26,.6) 0%, rgba(16,35,26,.45) 30%, rgba(16,35,26,.7) 60%, rgba(16,35,26,.92) 100%); } }
@@ -420,7 +421,7 @@ body { overflow-x: clip; }
 .appel .fond { position: absolute; inset: -12% 0; z-index: -2; }
 .appel .fond img { width: 100%; height: 100%; object-fit: cover; }
 .appel::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(16,35,26,.9) 0%, rgba(16,35,26,.62) 42%, rgba(16,35,26,.12) 78%), linear-gradient(0deg, rgba(16,35,26,.6), rgba(16,35,26,0) 40%); }
-@media (max-width: 899px) { .appel::before { background: linear-gradient(180deg, rgba(16,35,26,.55), rgba(16,35,26,.88)); } }
+@media (max-width: 899px) { .appel::before { background: linear-gradient(180deg, rgba(16,35,26,.72) 0%, rgba(16,35,26,.42) 55%, rgba(16,35,26,.7) 100%); } }
 .appel .fond img { object-position: var(--pos-fond, 70% 50%); }
 .appel .wrap { justify-items: start; }
 .appel .eyebrow { color: var(--jaune); justify-self: start !important; }
