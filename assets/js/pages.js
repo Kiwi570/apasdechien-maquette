@@ -179,7 +179,7 @@
       if (ok && !calme && dir > 0) G.to(haut, { x: 520, rotate: 18, autoAlpha: 0, duration: 0.45, ease: 'power2.in', onComplete: fin }); else fin();
     };
     const bp = $('[data-pile-prec]'), bs = $('[data-pile-suiv]');
-    if (n < 2) { bp && (bp.disabled = true); bs && (bs.disabled = true); }
+    if (n < 2) { const nav = $('.pile-nav'); nav && nav.setAttribute('data-seul', ''); }
     bp && bp.addEventListener('click', () => suivant(-1));
     bs && bs.addEventListener('click', () => suivant(1));
     pile.addEventListener('pointerdown', e => {
@@ -246,7 +246,7 @@
     const anim = G.to(piste, {
       x: () => -distance(), ease: 'none',
       scrollTrigger: {
-        trigger: sec, start: 'top top', end: () => '+=' + distance(), pin: true, scrub: 0.8, invalidateOnRefresh: true, anticipatePin: 1,
+        trigger: sec, start: 'top top', end: () => '+=' + distance(), pin: true, pinType: 'transform', scrub: 0.8, invalidateOnRefresh: true,
         onUpdate: s => {
           if (barre) barre.style.transform = `scaleX(${s.progress})`;
           const k = Math.round(s.progress * (tuiles.length - 1));
@@ -438,11 +438,11 @@
     G.set(lac, { strokeDasharray: L, strokeDashoffset: L, fillOpacity: 0 });
     G.set(halo, { scale: 0, transformOrigin: '50% 50%' });
     const tl = G.timeline({ scrollTrigger: { trigger: carte, start: 'top 78%', once: true } });
-    tl.to(lac, { strokeDashoffset: 0, duration: 2, ease: 'power2.inOut' })
-      .to(lac, { fillOpacity: 1, duration: 0.8 }, 1.3)
-      .to(halo, { scale: 1, duration: 1.2, ease: 'expo.out' }, 1.5)
-      .from(chemin, { strokeDashoffset: 300, duration: 2, ease: 'none' }, 1.6)
-      .from($$('text', carte), { autoAlpha: 0, y: 8, stagger: 0.1, duration: 0.5 }, 1.4);
+    tl.to(lac, { strokeDashoffset: 0, duration: 1.3, ease: 'power2.inOut' })
+      .to(lac, { fillOpacity: 1, duration: 0.6 }, 0.7)
+      .to(halo, { scale: 1, duration: 1, ease: 'expo.out' }, 0.8)
+      .from(chemin, { strokeDashoffset: 300, duration: 1.6, ease: 'none' }, 0.9)
+      .from($$('text', carte), { autoAlpha: 0, y: 8, stagger: 0.06, duration: 0.4 }, 0.5);
     G.to(pulse, { attr: { r: 40 }, opacity: 0, duration: 1.8, repeat: -1, ease: 'power1.out' });
     G.to(chemin, { strokeDashoffset: -120, duration: 6, repeat: -1, ease: 'none' });
   });
@@ -474,6 +474,20 @@
       momentsEls.forEach(m => G.from($('.moment-img', m), { clipPath: 'inset(100% 0 0 0 round 18px)', duration: 1.3, ease: 'expo.out', scrollTrigger: { trigger: m, start: 'top 80%', once: true } }));
     }
   }
+
+  /* ---------- collage qui se compose ---------- */
+  if (ok && !calme) $$('[data-collage]').forEach(c => {
+    const fs = $$('figure', c);
+    const depart = [{ x: -120, y: 60, rotate: -14 }, { x: 140, y: -40, rotate: 12 }, { x: 60, y: 140, rotate: -8 }];
+    G.from(fs, { x: i => depart[i % 3].x, y: i => depart[i % 3].y, rotate: i => depart[i % 3].rotate, autoAlpha: 0, duration: 1.3, stagger: 0.15, ease: 'expo.out', scrollTrigger: { trigger: c, start: 'top 78%', once: true } });
+    fs.forEach((f, i) => G.to(f, { y: (i - 1) * -26, ease: 'none', scrollTrigger: { trigger: c, start: 'top bottom', end: 'bottom top', scrub: true } }));
+  });
+
+  /* ---------- bandeau de photos en parallaxe ---------- */
+  if (ok && !calme) $$('[data-bandeau] figure').forEach((f, i) => {
+    G.fromTo($('img', f), { yPercent: -8 - i * 3 }, { yPercent: 2 + i * 3, ease: 'none', scrollTrigger: { trigger: f, start: 'top bottom', end: 'bottom top', scrub: true } });
+    G.from(f, { y: 80 + i * 30, autoAlpha: 0, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: f, start: 'top 92%', once: true } });
+  });
 
   /* ---------- troupe de pastilles ---------- */
   $$('[data-troupe]').forEach(t => {

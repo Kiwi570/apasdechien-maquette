@@ -21,7 +21,7 @@
 
   const G = window.gsap, ST = window.ScrollTrigger;
   const ok = !!(G && ST);
-  if (ok) G.registerPlugin(ST, window.SplitText, window.MotionPathPlugin);
+  if (ok) G.registerPlugin(...[ST, window.SplitText].filter(Boolean));
   const etat = window.APDC_ETAT = { calme, tactile, ok, page: PAGE, lenis: null };
 
   /* ---------- défilement fluide ---------- */
@@ -352,7 +352,7 @@
         u.setAttribute('class', 'empreinte');
         u.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${(ang * 180 / Math.PI + 90).toFixed(1)})`);
         gPattes.appendChild(u);
-        pattes.push({ el: u, l });
+        pattes.push({ el: u, l, o: -1 });
         gauche = !gauche;
       }
       tete = -1;
@@ -382,7 +382,8 @@
         let o = 0;
         if (calme) o = 0.32;
         else if (dist > 0) o = dist < 260 ? 0.85 : Math.max(0.22, 0.85 - (dist - 260) / 900);
-        p.el.style.opacity = o;
+        o = Math.round(o * 20) / 20;
+        if (o !== p.o) { p.el.style.opacity = o; p.o = o; }
       }
     };
     G.ticker.add(() => maj(false));

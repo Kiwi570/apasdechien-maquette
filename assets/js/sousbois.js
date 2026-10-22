@@ -16,7 +16,7 @@
       float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
       float bruit(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3. - 2. * f);
         return mix(mix(hash(i), hash(i + vec2(1., 0.)), f.x), mix(hash(i + vec2(0., 1.)), hash(i + vec2(1., 1.)), f.x), f.y); }
-      float fbm(vec2 p){ float v = 0., a = .5; for (int i = 0; i < 5; i++){ v += a * bruit(p); p = p * 2.02 + 3.1; a *= .5; } return v; }
+      float fbm(vec2 p){ float v = 0., a = .5; for (int i = 0; i < 4; i++){ v += a * bruit(p); p = p * 2.02 + 3.1; a *= .5; } return v; }
       void main(){
         vec2 asp = vec2(uRes.x / uRes.y, 1.);
         vec2 p = vUv * asp * 3.4;
@@ -36,7 +36,7 @@
     toiles.forEach(toile => {
       let renderer;
       try {
-        renderer = new Renderer({ canvas: toile, dpr: Math.min(1.5, window.devicePixelRatio || 1), alpha: true, premultipliedAlpha: false, antialias: false });
+        renderer = new Renderer({ canvas: toile, dpr: 0.5, alpha: true, premultipliedAlpha: false, antialias: false, powerPreference: 'low-power' });
       } catch (e) { toile.remove(); return; }
       const gl = renderer.gl;
       if (!gl) { toile.remove(); return; }
