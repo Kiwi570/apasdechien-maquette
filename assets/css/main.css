@@ -132,7 +132,7 @@ p { margin: 0; max-width: 64ch; }
 
 /* ---------- boutons ---------- */
 .btn { --bg: var(--foret); --fg: var(--papier); position: relative; display: inline-flex; align-items: center; gap: .7em; padding: 1em 1.5em; border: 0; border-radius: 999px; background: var(--bg); color: var(--fg); font-weight: 700; font-size: .98rem; letter-spacing: .01em; text-decoration: none; cursor: pointer; isolation: isolate; overflow: hidden; transition: color .35s var(--ease); white-space: nowrap; }
-.btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--ocre); border-radius: inherit; transform: translateY(101%); transition: transform .45s var(--ease); }
+.btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--ocre-fonce); border-radius: inherit; transform: translateY(101%); transition: transform .45s var(--ease); }
 .btn:hover::before, .btn:focus-visible::before { transform: none; }
 .btn .patte { width: 1.1em; height: 1.1em; transition: transform .45s var(--ease); }
 .btn:hover .patte { transform: rotate(-18deg) translateX(3px); }
@@ -153,7 +153,7 @@ p { margin: 0; max-width: 64ch; }
 .marque { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; min-width: 0; flex: 0 1 auto; }
 .header .outils { flex: none; }
 .marque-txt { min-width: 0; }
-@media (max-width: 460px) { .header .marque-sous { display: none; } .header .marque-nom { font-size: 1.18rem; } .header .marque img { width: 40px; height: 40px; } .outil { padding: 0 10px; height: 38px; } .burger { width: 42px; height: 42px; } }
+@media (max-width: 460px) { .header .marque-sous { display: none; } .header .marque-nom { font-size: 1.18rem; } .header .marque img { width: 40px; height: 40px; } .outil { padding: 0 10px; height: 44px; } .burger { width: 44px; height: 44px; } }
 .marque img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 2px var(--papier), 0 6px 18px -8px rgba(0,0,0,.5); }
 .marque-txt { display: grid; line-height: 1.05; }
 .marque-nom { font-family: var(--f-display); font-size: 1.32rem; font-weight: 500; letter-spacing: -.01em; font-variation-settings: "opsz" 48, "SOFT" 100, "WONK" 1; white-space: nowrap; }
@@ -164,7 +164,7 @@ p { margin: 0; max-width: 64ch; }
 .nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--ocre); transform: scaleX(0); transform-origin: right; transition: transform .4s var(--ease); }
 .nav a:hover::after, .nav a[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
 .outils { display: flex; align-items: center; gap: 8px; }
-.outil { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px; border-radius: 999px; border: 1.5px solid currentColor; background: transparent; cursor: pointer; font-size: .8rem; font-weight: 700; letter-spacing: .02em; opacity: .9; }
+.outil { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px; border-radius: 999px; border: 1.5px solid currentColor; background: transparent; cursor: pointer; font-size: .8rem; font-weight: 700; letter-spacing: .02em; opacity: .9; }
 .outil:hover { opacity: 1; background: color-mix(in srgb, currentColor 10%, transparent); }
 .outil[aria-pressed="true"] { background: var(--jaune); color: var(--noir-panneau); border-color: var(--jaune); }
 .outil .lbl { display: none; }
@@ -310,7 +310,8 @@ body { overflow-x: clip; }
 .hors-cadre figcaption { position: absolute; left: var(--l); bottom: calc(var(--b) - 30px); font-size: var(--t-small); color: var(--gris); }
 
 /* ---------- le flair ---------- */
-.flair { position: relative; overflow: hidden; border-radius: 10px; margin: 0; background: var(--sable); cursor: none; }
+.flair { position: relative; overflow: hidden; border-radius: 10px; margin: 0; background: var(--sable); }
+.has-curseur .flair { cursor: none; }
 .flair img { width: 100%; height: 100%; object-fit: cover; }
 .flair .f-base { filter: saturate(.6) sepia(.06) brightness(.97); transition: filter .6s; }
 @media (hover: none) { .flair .f-base { filter: none; } .flair .f-couleur { display: none; } .flair figcaption { opacity: 1; transform: none; } }
@@ -511,8 +512,9 @@ body { overflow-x: clip; }
 .planning-grille { display: grid; gap: 6px; }
 .jour { display: grid; grid-template-columns: 64px 1fr; gap: 6px 10px; align-items: center; min-height: 44px; padding: 7px 10px; border-radius: 12px; background: rgba(248, 243, 232, .05); border: 1px solid var(--ligne-claire); }
 .jour .creneaux { display: flex; flex-wrap: wrap; gap: 6px; }
-.jour:not(:has(.creneau)) { opacity: .45; }
-.jour .vide { font-size: .78rem; opacity: .7; }
+.jour:not(:has(.creneau)) { opacity: 1; }
+.jour:not(:has(.creneau)) .nom { opacity: .85; }
+.jour .vide { font-size: .78rem; opacity: .85; }
 .jour .nom { font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; opacity: .85; }
 .jour.aujourdhui { border-color: var(--jaune); background: rgba(242, 191, 26, .08); }
 .jour.aujourdhui .nom { color: var(--jaune); opacity: 1; }
@@ -680,6 +682,9 @@ body { overflow-x: clip; }
 .rideau .pas { position: absolute; left: 0; top: 50%; width: 100%; height: 60px; }
 .rideau svg.patte { position: absolute; width: 34px; height: 34px; fill: var(--jaune); opacity: 0; }
 .ouverture { position: fixed; inset: 0; z-index: 145; background: var(--papier); display: grid; place-items: center; color: var(--foret); }
+/* filet : si app.js ne démarre pas, l'écran d'ouverture s'efface de lui-même */
+.ouverture { animation: ouverture-secours .5s 6s forwards; }
+@keyframes ouverture-secours { to { opacity: 0; visibility: hidden; pointer-events: none; } }
 .ouverture svg { width: min(86vw, 760px); height: auto; overflow: visible; }
 .ouverture .titre-trace { font-family: var(--f-display); font-size: 120px; font-weight: 420; fill: transparent; stroke: var(--foret); stroke-width: 1.4; font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1; }
 .ouverture .sous-trace { font-family: var(--f-body); font-size: 20px; font-weight: 700; letter-spacing: .3em; fill: var(--ocre-fonce); opacity: 0; }
@@ -771,3 +776,7 @@ body { overflow-x: clip; }
   .fourche text { font-size: 24px; }
 }
 @media (max-width: 640px) { .exercice .scene { height: 70px; left: 8px; right: 8px; bottom: 8px; } }
+
+/* audit : menu défilable (paysage), verrou sans Lenis, curseur natif conservé sans curseur de remplacement */
+.menu { overflow-y: auto; overscroll-behavior: contain; }
+html.menu-ouvert { overflow: hidden; }

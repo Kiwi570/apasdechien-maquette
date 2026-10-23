@@ -78,6 +78,7 @@
     html.classList.remove('menu-ouvert');
     burger && burger.setAttribute('aria-expanded', 'false');
     lenis && lenis.start();
+    if (menu && menu.contains(d.activeElement)) burger && burger.focus();
   }
   if (burger && menu) {
     burger.addEventListener('click', () => {
@@ -85,10 +86,20 @@
       burger.setAttribute('aria-expanded', String(ouvert));
       if (ouvert) {
         lenis && lenis.stop();
+        const premier = menu.querySelector('a, button'); if (premier) setTimeout(() => premier.focus({ preventScroll: true }), 60);
         if (ok && !calme) G.fromTo(menu.querySelectorAll('li'), { y: 40, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.06, duration: 0.7, ease: 'expo.out', delay: 0.15 });
       } else lenis && lenis.start();
     });
-    d.addEventListener('keydown', e => { if (e.key === 'Escape') fermerMenu(); });
+    d.addEventListener('keydown', e => {
+      if (!html.classList.contains('menu-ouvert')) return;
+      if (e.key === 'Escape') { fermerMenu(); burger.focus(); return; }
+      if (e.key !== 'Tab') return;
+      // piège du focus : burger + éléments du menu
+      const f = [burger].concat([...menu.querySelectorAll('a[href], button')].filter(x => x.offsetParent !== null));
+      const i = f.indexOf(d.activeElement);
+      if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && (i === f.length - 1 || i === -1)) { e.preventDefault(); f[0].focus(); }
+    });
   }
 
   /* ---------- copier ---------- */
@@ -439,7 +450,7 @@
       .add(pattesRideau, 0.25)
       .to({}, { duration: 0.35 });
   });
-  window.addEventListener('pageshow', e => { if (e.persisted && rideau) { G.set(rideau, { autoAlpha: 0, yPercent: 100 }); lenis && lenis.start(); } });
+  window.addEventListener('pageshow', e => { if (e.persisted) fermerMenu(); if (e.persisted && rideau) { G.set(rideau, { autoAlpha: 0, yPercent: 100 }); lenis && lenis.start(); } });
   const leverRideau = delai => {
     G.set(rideau, { yPercent: 0, autoAlpha: 1 });
     html.classList.remove('rideau-entree');

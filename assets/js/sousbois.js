@@ -33,6 +33,10 @@
         gl_FragColor = vec4(col, 1.);
       }`;
 
+    // pas de WebGL : on retire les toiles sans erreur console d'OGL
+    let webgl = false;
+    try { const c = document.createElement('canvas'); webgl = !!(c.getContext('webgl') || c.getContext('experimental-webgl')); } catch (e) { webgl = false; }
+    if (!webgl) { toiles.forEach(t => t.remove()); return; }
     toiles.forEach(toile => {
       let renderer;
       try {

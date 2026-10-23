@@ -237,6 +237,12 @@
       G.to(p, { strokeDashoffset: on ? 0 : L, duration: on ? 1.6 : 0.4, ease: on ? 'power2.inOut' : 'power1.in', overwrite: true });
     };
     $$('[data-trajet]', piste).forEach(p => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = calme ? 0 : L; });
+    // rotation d'une tablette autour de 900 px : la piste change de mode, on reconstruit la page (sauf saisie en cours)
+    const mq900 = window.matchMedia('(min-width: 900px)'); const modeInitial = mq900.matches;
+    mq900.addEventListener?.('change', () => {
+      const saisie = [...document.querySelectorAll('input, textarea, select')].some(c => (c.type === 'checkbox' || c.type === 'radio') ? c.checked !== c.defaultChecked : c.value !== c.defaultValue);
+      if (mq900.matches !== modeInitial && !saisie) location.reload();
+    });
     if (!ok || calme || window.innerWidth < 900) {
       tuiles.forEach(t => visible(t, v => dessinerTrajet(t, v), { threshold: 0.55 }));
       if (barre && ok) piste.addEventListener('scroll', () => { barre.style.transform = `scaleX(${piste.scrollLeft / Math.max(1, piste.scrollWidth - piste.clientWidth)})`; }, { passive: true });
