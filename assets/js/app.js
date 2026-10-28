@@ -65,9 +65,43 @@
       header.classList.toggle('is-hidden', y > 420 && y > dernierY + 4 && !html.classList.contains('menu-ouvert'));
       if (y < dernierY - 4) header.classList.remove('is-hidden');
     }
-    if (barre) barre.classList.toggle('is-visible', y > 480);
+    if (barre && !heroObs) heroPasse = y > window.innerHeight * 0.6;
+    majBarre();
     dernierY = y;
   };
+
+  // hauteurs réelles de l'en-tête et de la barre du bas, pour les sections épinglées et le pied de page
+  const mesurer = () => {
+    if (header) html.style.setProperty('--entete-h', (header.offsetTop + header.offsetHeight) + 'px');
+    html.style.setProperty('--barres-h', (barre && getComputedStyle(barre).display !== 'none' ? barre.offsetHeight : 0) + 'px');
+  };
+  mesurer();
+  if ('ResizeObserver' in window) { const ro = new ResizeObserver(mesurer); header && ro.observe(header); barre && ro.observe(barre); }
+  window.addEventListener('resize', mesurer);
+
+  // barre du bas : seulement une fois le héros dépassé, jamais sur un formulaire, le pied de page,
+  // une section épinglée, le menu ouvert ou la page introuvable
+  let heroPasse = false, heroObs = null;
+  const genants = new Set();
+  function majBarre() {
+    if (!barre) return;
+    barre.classList.toggle('is-visible', PAGE !== '404' && heroPasse && genants.size === 0 && !html.classList.contains('menu-ouvert'));
+  }
+  if (barre && 'IntersectionObserver' in window) {
+    const hero = d.querySelector('[data-hero]');
+    if (hero) {
+      heroObs = new IntersectionObserver(es => { es.forEach(e => { heroPasse = !e.isIntersecting && e.boundingClientRect.top < 0; }); majBarre(); });
+      heroObs.observe(hero);
+    }
+    const obs = new IntersectionObserver(es => {
+      es.forEach(e => {
+        const gene = e.isIntersecting && (!e.target.matches('[data-horizontal]') || e.target.classList.contains('horizontal--epingle'));
+        gene ? genants.add(e.target) : genants.delete(e.target);
+      });
+      majBarre();
+    });
+    d.querySelectorAll('form.demande, footer, [data-horizontal]').forEach(el => obs.observe(el));
+  }
   window.addEventListener('scroll', surDefilement, { passive: true });
   surDefilement();
 
@@ -77,6 +111,7 @@
     if (!html.classList.contains('menu-ouvert')) return;
     html.classList.remove('menu-ouvert');
     burger && burger.setAttribute('aria-expanded', 'false');
+    majBarre();
     lenis && lenis.start();
     if (menu && menu.contains(d.activeElement)) burger && burger.focus();
   }
@@ -84,6 +119,7 @@
     burger.addEventListener('click', () => {
       const ouvert = html.classList.toggle('menu-ouvert');
       burger.setAttribute('aria-expanded', String(ouvert));
+      majBarre();
       if (ouvert) {
         lenis && lenis.stop();
         const premier = menu.querySelector('a, button'); if (premier) setTimeout(() => premier.focus({ preventScroll: true }), 60);

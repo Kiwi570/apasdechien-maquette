@@ -248,6 +248,8 @@
       if (barre && ok) piste.addEventListener('scroll', () => { barre.style.transform = `scaleX(${piste.scrollLeft / Math.max(1, piste.scrollWidth - piste.clientWidth)})`; }, { passive: true });
       return;
     }
+    // épinglée : la section tient dans l'écran sous l'en-tête réel (voir .horizontal--epingle)
+    sec.classList.add('horizontal--epingle');
     const distance = () => Math.max(0, piste.scrollWidth - window.innerWidth);
     const anim = G.to(piste, {
       x: () => -distance(), ease: 'none',
